@@ -1,0 +1,87 @@
+﻿@model IEnumerable<OnlineBookstore.Data.Entities.Book>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PhotoURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuthorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearOfIssue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfPages)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookType)
+            </th>
+            <th colspan="3">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+        <tr>
+            <td>
+                <img src="~/images/@item.PhotoURL" width="100" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AuthorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearOfIssue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfPages)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookType)
+            </td>           
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-block btn-primary">Edit</a>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-block btn-info">Details</a>
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-block btn-danger">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+

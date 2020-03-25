@@ -1,0 +1,338 @@
+﻿@model OnlineBookstore.Models.BookViewModel
+@{
+    ViewData["Title"] = "Create";
+
+}
+
+
+
+    <div class="container">
+        <h3 class="crud-title">Add a book</h3>
+        <hr />
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <form asp-action="Create" name="bookcreate">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Title" class="control-label">Title</label>
+                            <input asp-for="Title" class="form-control" placeholder="Enter title" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="YearOfIssue" class="control-label">Year of issue</label>
+                                    <input asp-for="YearOfIssue" class="form-control" placeholder="Enter year of issue" />
+                                    <span asp-validation-for="YearOfIssue" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="NumberOfPages" class="control-label">Number of pages</label>
+                                    <input asp-for="NumberOfPages" class="form-control" placeholder="Enter number of pages" />
+                                    <span asp-validation-for="NumberOfPages" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-12 col-md-6">
+                                <label asp-for="Genre" class="control-label">Genre</label>
+                                <input asp-for="Genre" class="form-control" placeholder="Enter genre" />
+                                <span asp-validation-for="Genre" class="text-danger"></span>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label asp-for="CategoryID" class="control-label">Category name</label>
+                                @Html.DropDownListFor(x => Model.CategoryID, new SelectList(Model.Categories, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Category" })
+                                <span asp-validation-for="CategoryID" class="text-danger"></span>
+                                <input asp-for="CategoryName" class="form-control" hidden id="CategoryName" />
+                                <a class="btn btn-success btn-sm btn-add-new-custom" data-toggle="modal" data-target="#CategoryModal">Add New Category</a>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-12 col-md-6">
+                                <label asp-for="AuthorID" class="control-label">Author name</label>
+                                @Html.DropDownListFor(x => Model.AuthorID, new SelectList(Model.Authors, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Author" })
+                                <span asp-validation-for="AuthorID" class="text-danger"></span>
+                                <input asp-for="AuthorName" class="form-control" hidden id="AuthorName" />
+                                <a class="btn btn-success btn-sm btn-add-new-custom" data-toggle="modal" data-target="#AuthorModal">Add New Author</a>
+                            </div>
+
+
+                            <div class="col-12 col-md-6">
+                                <label asp-for="PublisherID" class="control-label">Publisher name</label>
+                                @Html.DropDownListFor(x => Model.PublisherID, new SelectList(Model.Publishers, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Publisher" })
+                                <span asp-validation-for="PublisherID" class="text-danger"></span>
+                                <input asp-for="PublisherName" class="form-control" hidden id="PublisherName" />
+                                <a class="btn btn-success btn-sm btn-add-new-custom" data-toggle="modal" data-target="#PublisherModal">Add New Publisher</a>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Price" class="control-label">Price</label>
+                                    <input asp-for="Price" class="form-control" placeholder="Enter price" />
+                                    <span asp-validation-for="Price" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="BookType" class="control-label">Book type</label>
+                                    <input asp-for="BookType" class="form-control" placeholder="Enter book type" />
+                                    <span asp-validation-for="BookType" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Copies" class="control-label">Copies</label>
+                                    <input asp-for="Copies" class="form-control" placeholder="Enter number of copies" />
+                                    <span asp-validation-for="Copies" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Dimensions" class="control-label">Dimensions</label>
+                                    <input asp-for="Dimensions" class="form-control" placeholder="Enter book dimensions" />
+                                    <span asp-validation-for="Dimensions" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Edition" class="control-label">Edition</label>
+                                    <input asp-for="Edition" class="form-control" placeholder="Enter edition number" />
+                                    <span asp-validation-for="Edition" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Language" class="control-label">Language</label>
+                                    <input asp-for="Language" class="form-control" placeholder="Enter language" />
+                                    <span asp-validation-for="Language" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Shipping" class="control-label">Shipping</label>
+                                    <input asp-for="Shipping" class="form-control" placeholder="Enter type of shipping" />
+                                    <span asp-validation-for="Shipping" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Weight" class="control-label">Weight</label>
+                                    <input asp-for="Weight" class="form-control" placeholder="Enter book weight" />
+                                    <span asp-validation-for="Weight" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Country" class="control-label">Country</label>
+                            <input asp-for="Country" class="form-control" placeholder="Enter country of origin" />
+                            <span asp-validation-for="Country" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="PhotoURL" hidden id="PhotoURL" />
+
+                        <div class="form-group">
+                            <label asp-for="Description" class="control-label">Description</label>
+                            <textarea asp-for="Description" rows="12" class="form-control" placeholder="Enter book description"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-block btn-primary" />
+                        </div>
+                    </form>
+                    <div class="form-group">
+                        <div class="col-12 col-md-12">
+                            <label>Upload Photo - Book Cover</label>
+                        </div>
+                        <div class="col-12 col-md-12">
+                            <div class="row">
+                                <input type="file" #file accept="image/*" id="photoUpload" />
+                                <button class="btn btn-custom-upload btn-block" id="uploadPhoto">Upload Photo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Category Modal-->
+        <div class="modal fade" id="CategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Category</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label asp-for="CreateCategoryName" class="control-label">Category Name</label>
+                            <input asp-for="CreateCategoryName" class="form-control" />
+                            <span asp-validation-for="CreateCategoryName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal" id="addNewCategory">Create</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--Author Modal-->
+        <div class="modal fade" id="AuthorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Author</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label asp-for="CreateAuthorName" class="control-label">Category Name</label>
+                            <input asp-for="CreateAuthorName" class="form-control" />
+                            <span asp-validation-for="CreateAuthorName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CreateAuthorShortDescription" class="control-label">Short Description</label>
+                            <input asp-for="CreateAuthorShortDescription" class="form-control" />
+                            <span asp-validation-for="CreateAuthorShortDescription" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal" id="addNewAuthor">Create</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--Publisher Modal-->
+        <div class="modal fade" id="PublisherModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Publisher</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label asp-for="CreatePublisherName" class="control-label">Category Name</label>
+                            <input asp-for="CreatePublisherName" class="form-control" />
+                            <span asp-validation-for="CreatePublisherName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CreatePublisherCountry" class="control-label">Category Country</label>
+                            <input asp-for="CreatePublisherCountry" class="form-control" />
+                            <span asp-validation-for="CreatePublisherCountry" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal" id="addNewPublisher">Create</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $("#Category").change(function () {
+            var optionSelected = $("option:selected", this);
+            var valueSelected = this.value;
+            var textSelected = optionSelected.text();
+            $("#CategoryName").val(textSelected);
+            console.log($("#CategoryName").val(textSelected));
+        });
+        $("#Author").change(function () {
+            var optionSelected = $("option:selected", this);
+            var valueSelected = this.value;
+            var textSelected = optionSelected.text();
+            $("#AuthorName").val(textSelected);
+            console.log($("#AuthorName").val(textSelected));
+        });
+        $("#Publisher").change(function () {
+            var optionSelected = $("option:selected", this);
+            var valueSelected = this.value;
+            var textSelected = optionSelected.text();
+            $("#PublisherName").val(textSelected);
+            console.log($("#PublisherName").val(textSelected));
+        });
+        $("#uploadPhoto").click(function () {
+            var data = new FormData();
+            var files = $("#photoUpload").get(0).files;
+            if (files.length > 0) {
+                data.append("UploadedImage", files[0]);
+            }
+            
+            $.ajax({
+                type: "POST",
+                url: "/Book/UploadPhoto",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (data) {
+                    console.log(data.dbPath);
+                    $("#PhotoURL").val(data.dbPath);
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+        });
+        $("#addNewCategory").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Category/CreateCategoryAJAX",
+                data: { name: $("#CreateCategoryName").val() },
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    $("#Category").append("<option value=" + data.id + ">" + data.name + "</option>");   
+                },
+                error: function () { alert("error");}
+            })
+        })
+        $("#addNewAuthor").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Author/CreateAuthorAJAX",
+                data: { name: $("#CreateAuthorName").val(),shortDescription: $("#CreateAuthorShortDescription").val()},
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    $("#Author").append("<option value=" + data.id + ">" + data.name + "</option>");   
+                },
+                error: function () { alert("error");}
+            })
+        })
+
+        $("#addNewPublisher").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Publisher/CreatePublisherAJAX",
+                data: { name: $("#CreatePublisherName").val(), country: $("#CreatePublisherCountry").val() },
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    $("#Publisher").append("<option value=" + data.id + ">" + data.name + "</option>");   
+                },
+                error: function () { alert("error");}
+            })
+        })
+    </script>
+}

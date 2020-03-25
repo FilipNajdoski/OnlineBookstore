@@ -1,0 +1,36 @@
+﻿@model OnlineBookstore.Data.Entities.Author
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container">
+    <h3 class="crud-title">Add author</h3>
+    <hr />
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label">Title</label>
+                        <input asp-for="Name" class="form-control" placeholder="Enter title" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                                        
+                    <div class="form-group">
+                        <label asp-for="ShortDescription" class="control-label">Year of issue</label>
+                        <input asp-for="ShortDescription" class="form-control" placeholder="Enter year of issue" />
+                        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                    </div>
+                                             
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-block btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
