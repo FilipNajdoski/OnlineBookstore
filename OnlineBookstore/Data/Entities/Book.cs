@@ -69,5 +69,7 @@ namespace OnlineBookstore.Data.Entities
         public string PhotoURL { get; set; }
 
         public ICollection<Photo> Photos { get; set; }
+
+        public int SoldItems { get; set; }
     }
 }

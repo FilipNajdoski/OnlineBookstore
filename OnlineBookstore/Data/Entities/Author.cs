@@ -16,5 +16,6 @@ namespace OnlineBookstore.Data.Entities
         
         public string ShortDescription { get; set; }
         public virtual ICollection<Author> Authors { get; set; }
+        public bool Popularity { get; set; }
     }
 }
