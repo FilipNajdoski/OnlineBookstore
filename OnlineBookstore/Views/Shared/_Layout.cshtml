@@ -6,6 +6,12 @@
     <title>@ViewData["Title"] - OnlineBookstore</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <!--CSS-->
+    <link href="~/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="~/datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+    <!-- <environment include="Development"> </environment> -->
 </head>
 <body>
     <header>
@@ -43,9 +49,7 @@
         </nav>
     </header>
     <div class="container-fluid">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        @RenderBody()
     </div>
 
     <footer class="border-top footer text-muted">
@@ -53,11 +57,20 @@
             &copy; 2020 - OnlineBookstore - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    <!-- js -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/js/form-validation.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/font-awesome/js/all.js"></script>
+    <!-- custom js scripts -->
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/moment.js/moment.min.js"></script>
+    <!-- environments setup -->
+    <!--<environment include="Development"></environment> -->   
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -38,7 +38,7 @@ namespace OnlineBookstore.Controllers
             _publisherService = publisherService;
             _logger = logger;
         }
-
+        // GET: Books
         public IActionResult Index()
         {
             var bookList = _bookService.GetAllBooks();
@@ -51,6 +51,12 @@ namespace OnlineBookstore.Controllers
                 _logger.LogInformation(LoggerMessageDisplay.NoBookFound);
             }
             return View(bookList);
+        }
+
+        public JsonResult FillBooksDataTable()
+        {
+            var booklist = _bookService.GetAllBooks();
+            return Json(new { data = booklist });
         }
 
         //GET: BOOK/CREATE
