@@ -136,14 +136,56 @@
                     url: "/Book/FillBooksDataTable",
                     type: "GET",
                     datatype: "json",
-                    success: function (data) {
-                        console.log(data);
+                    //success: function (data) {
+                    //    console.log(data);
+                    //},
+                    //error: function () {
+                    //    alert("error");
+                    //}
+                },
+                columns: [
+                    {
+                        "data": "photoURL",
+                        "render": function (data) {
+                            return '<img src="images/' + data + '" width="100" />';
+                        }
                     },
-                    error: function () {
-                        alert("error");
-                    }
-                }
 
+                    { "data": "title", "autoWidth": true },
+                    { "data": "authorName", "autoWidth": true },
+                    {
+                        data: "yearOfIssue",
+                        render: function (data, type) {
+                             if(type === "sort" || type === "type"){
+                                return data;
+                            }
+                            return moment(data).format("DD/MM/YYYY");
+                        }
+                    },
+                    { "data": "numberOfPages", "autoWidth": true },
+                    { "data": "genre", "autoWidth": true },
+                    { "data": "categoryName", "autoWidth": true },
+                    { "data": "price", "autoWidth": true },
+                    { "data": "bookType", "autoWidth": true },
+                    {
+                        data: 'id',
+                        render: function (data, type, row) {
+                            var editUrl = '@Url.Action("Edit", "Book")/' + data;
+                            var detailsUrl = '@Url.Action("Details", "Book")/' + data;
+                            var deleteUrl = '@Url.Action("Delete", "Book")/' + data;
+                            return '<a href="'+ editUrl +'"class="table-action-btn btn btn-block btn-primary">' +
+                                '<i class="fas fa-edit"></i> &nbsp; Edit' +
+                                '</a>' +
+                                '<a  href="'+ detailsUrl +'"class="table-action-btn btn btn-block btn-info">' +
+                                '<i class="fas fa-info-circle"></i> &nbsp; Details' +
+                                '</a>' +
+                                '<a  href="'+ deleteUrl +'"class="table-action-btn btn btn-block btn-danger">' +
+                                ' <i class="fas fa-trash-alt"></i> &nbsp; Delete' +
+                                '</a>';
+                        },
+                        width: "150px"
+                    }
+                ]
             });
         });
 
