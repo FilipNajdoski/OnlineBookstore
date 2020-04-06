@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
@@ -16,8 +17,10 @@ using OnlineBookstore.Services.Services.Interfaces;
 
 namespace OnlineBookstore.Controllers
 {
+    [Authorize(Roles = "admin, editor")]
     public class BookController : Controller
     {
+        
         private readonly IBookService _bookService;
         private readonly IAuthorService _authorService;
         private readonly ICategoryService _categoryService;
@@ -60,6 +63,7 @@ namespace OnlineBookstore.Controllers
         }
 
         //GET: BOOK/CREATE
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             var Categories = _categoryService.GetAllCategories();
@@ -131,6 +135,7 @@ namespace OnlineBookstore.Controllers
             return selectList;
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult Create(BookViewModel bookViewModel)
         {
@@ -167,6 +172,7 @@ namespace OnlineBookstore.Controllers
             
            return View();
         }
+        [Authorize(Roles = "admin, editor")]
         //GET: BOOK/EDIT
         public IActionResult Edit(int Id)
         {
@@ -195,6 +201,7 @@ namespace OnlineBookstore.Controllers
             }
             return View(book);
         }
+        [Authorize(Roles = "admin, editor")]
         public IActionResult Details (int Id)
         {
             var book = _bookService.GetBookById(Id);
@@ -204,6 +211,7 @@ namespace OnlineBookstore.Controllers
             }
             return View(book);
         }
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(int Id)
         {
             var book = _bookService.GetBookById(Id);
@@ -213,7 +221,8 @@ namespace OnlineBookstore.Controllers
             }
             return View(book);
         }
-        [HttpPost]
+        [Authorize(Roles = "admin")]
+        [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int Id)
         {
             if (ModelState.IsValid)
@@ -223,6 +232,7 @@ namespace OnlineBookstore.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        [Authorize(Roles = "admin, editor")]
         [HttpPost]
         public IActionResult UploadPhoto()
         {

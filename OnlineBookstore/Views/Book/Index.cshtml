@@ -5,12 +5,15 @@
 
 <h1 class="bg-dark text-white text-center p-3">Bookstore List</h1>
 <div class="container-fluid">
-    <div>
-        <div class="col-12 col-md-12">
-            <a asp-action="Create" class="btn btn-success m-3" style="float:right"> <i class="fas fa-plus"></i> Create</a>
+    @if (ViewContext.HttpContext.User.IsInRole("admin"))
+    {
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <a asp-action="Create" class="btn btn-success m-3" style="float:right"> <i class="fas fa-plus"></i> Create</a>
+            </div>
         </div>
+    }
     </div>
-</div>
 
 <div class="custom-container">
     <table id="booksDataTable" class="table table-striped row-border" style="width:100%">
@@ -179,9 +182,11 @@
                                 '<a  href="'+ detailsUrl +'"class="table-action-btn btn btn-block btn-info">' +
                                 '<i class="fas fa-info-circle"></i> &nbsp; Details' +
                                 '</a>' +
-                                '<a  href="'+ deleteUrl +'"class="table-action-btn btn btn-block btn-danger">' +
-                                ' <i class="fas fa-trash-alt"></i> &nbsp; Delete' +
-                                '</a>';
+                                
+                                '<a  href="' + deleteUrl + '"class="table-action-btn btn btn-block btn-danger">' +
+                                    ' <i class="fas fa-trash-alt"></i> &nbsp; Delete' +
+                                    '</a>';
+                                
                         },
                         width: "150px"
                     }
