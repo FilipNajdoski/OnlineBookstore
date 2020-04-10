@@ -49,21 +49,21 @@ namespace OnlineBookstore.Migrations
                         new
                         {
                             Id = "b4280b6a-0613-4cbd-a9e6-f1701e926e73",
-                            ConcurrencyStamp = "806f4607-b482-4e7f-8d48-2e0aef46ff8f",
+                            ConcurrencyStamp = "eedf6e88-27ae-414f-a9c7-5f4fae390eba",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "b4280b6a-0613-4cbd-a9e6-f1701e926e74",
-                            ConcurrencyStamp = "491f14d3-5f98-4b1b-8893-f972fee38332",
+                            ConcurrencyStamp = "0a26153b-c160-4c8a-a9b6-89ace82a943d",
                             Name = "editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
                             Id = "b4280b6a-0613-4cbd-a9e6-f1701e926e75",
-                            ConcurrencyStamp = "90d0721d-7da0-4259-8a0c-cf37ea939fe4",
+                            ConcurrencyStamp = "dac19500-dabc-453f-8046-cb96ca6bb21d",
                             Name = "guest",
                             NormalizedName = "GUEST"
                         });
@@ -168,7 +168,7 @@ namespace OnlineBookstore.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ONLINEBOOKSTORE.COM",
                             NormalizedUserName = "ADMIN@ONLINEBOOKSTORE.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAxoxV7RzBXy4N+2j2ilJtZWRihLB088pTgJpTyzGcxf6dwbno9ECvZS6DeQm+y4UQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH06y7nsx97ELG+erHxCoRis07KzdxYR8PWeNqRWSdgMIsxwy62dwd3J1Qnthh8saA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

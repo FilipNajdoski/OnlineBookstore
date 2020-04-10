@@ -10,8 +10,8 @@ using OnlineBookstore.Data;
 namespace OnlineBookstore.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200330165830_newbase")]
-    partial class newbase
+    [Migration("20200410194052_add")]
+    partial class add
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,29 @@ namespace OnlineBookstore.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "b4280b6a-0613-4cbd-a9e6-f1701e926e73",
+                            ConcurrencyStamp = "eedf6e88-27ae-414f-a9c7-5f4fae390eba",
+                            Name = "admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "b4280b6a-0613-4cbd-a9e6-f1701e926e74",
+                            ConcurrencyStamp = "0a26153b-c160-4c8a-a9b6-89ace82a943d",
+                            Name = "editor",
+                            NormalizedName = "EDITOR"
+                        },
+                        new
+                        {
+                            Id = "b4280b6a-0613-4cbd-a9e6-f1701e926e75",
+                            ConcurrencyStamp = "dac19500-dabc-453f-8046-cb96ca6bb21d",
+                            Name = "guest",
+                            NormalizedName = "GUEST"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -135,6 +158,24 @@ namespace OnlineBookstore.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "b4280b6a-0613-4cbd-a9e6-f1701e926e73",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "c8554266-b401-4519-9aeb-a9283053fc58",
+                            Email = "admin@onlinebookstore.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ONLINEBOOKSTORE.COM",
+                            NormalizedUserName = "ADMIN@ONLINEBOOKSTORE.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH06y7nsx97ELG+erHxCoRis07KzdxYR8PWeNqRWSdgMIsxwy62dwd3J1Qnthh8saA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@onlinebookstore.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -198,6 +239,13 @@ namespace OnlineBookstore.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "b4280b6a-0613-4cbd-a9e6-f1701e926e73",
+                            RoleId = "b4280b6a-0613-4cbd-a9e6-f1701e926e73"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -397,9 +445,6 @@ namespace OnlineBookstore.Migrations
                         .HasColumnType("nvarchar(350)")
                         .HasMaxLength(350);
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<double>("Weight")
                         .HasColumnType("float");
 
@@ -413,8 +458,6 @@ namespace OnlineBookstore.Migrations
                     b.HasIndex("CategoryID");
 
                     b.HasIndex("PublisherID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Books");
 
@@ -1033,14 +1076,9 @@ namespace OnlineBookstore.Migrations
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BookId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Photos");
                 });
@@ -1148,59 +1186,6 @@ namespace OnlineBookstore.Migrations
                     b.ToTable("Subcategories");
                 });
 
-            modelBuilder.Entity("OnlineBookstore.Data.Entities.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
-
-                    b.Property<bool>("IsAdmin")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsModerator")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("LastActive")
-                        .HasColumnType("datetime2");
-
-                    b.Property<byte[]>("PasswordHash")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<byte[]>("PasswordSalt")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("PhotoURL")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -1278,10 +1263,6 @@ namespace OnlineBookstore.Migrations
                         .HasForeignKey("PublisherID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("OnlineBookstore.Data.Entities.User", null)
-                        .WithMany("Books")
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("OnlineBookstore.Data.Entities.Category", b =>
@@ -1296,10 +1277,6 @@ namespace OnlineBookstore.Migrations
                     b.HasOne("OnlineBookstore.Data.Entities.Book", null)
                         .WithMany("Photos")
                         .HasForeignKey("BookId");
-
-                    b.HasOne("OnlineBookstore.Data.Entities.User", null)
-                        .WithMany("Photos")
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("OnlineBookstore.Data.Entities.Publisher", b =>
